@@ -13,7 +13,7 @@ namespace PasswordGenerator
             'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
         };
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine(
                 "Welcome to my First C# Program\nYou may use this program to create complex passwords using efficient methods.\n");
@@ -33,12 +33,12 @@ namespace PasswordGenerator
             var random = new Random();
 
             var password = new Password(length, isAlphanumeric, isSymbolical);
-            Console.WriteLine("Password: " + password.createPassword(random));
+            Console.WriteLine("Password: " + password.CreatePassword(random));
             Console.WriteLine(
                 "Press ENTER to generate another password with the same profile. Press anything else to close.");
             while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Enter))
                 if (Console.ReadKey(true).Key == ConsoleKey.Enter)
-                    Console.WriteLine("Password: " + password.createPassword(random));
+                    Console.WriteLine("Password: " + password.CreatePassword(random));
                 else
                     Environment.Exit(1);
         }
@@ -46,7 +46,6 @@ namespace PasswordGenerator
         private static bool ParseBoolean(string input)
         {
             if (input.Equals("y", StringComparison.OrdinalIgnoreCase)) return true;
-
             if (input.Equals("n", StringComparison.OrdinalIgnoreCase)) return false;
 
             throw new BooleanConsoleParseException("Unable to parse \"" + input + "\" as y or n");

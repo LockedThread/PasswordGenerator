@@ -12,20 +12,20 @@ namespace PasswordGenerator
             Symbols = symbols;
         }
 
-        public bool Alphanumeric { get; set; }
-        public int Length { get; set; }
-        public bool Symbols { get; set; }
+        private bool Alphanumeric { get; }
+        private int Length { get; }
+        private bool Symbols { get; }
 
-        public string createPassword(Random random)
+        public string CreatePassword(Random random)
         {
-            var allowed = getAllowedCharacters();
+            var allowed = GetAllowedCharacters();
             var stringBuilder = new StringBuilder();
             for (var i = 0; i < Length; i++) stringBuilder.Append(allowed[random.Next(0, allowed.Length)]);
 
             return stringBuilder.ToString();
         }
 
-        public char[] getAllowedCharacters()
+        public char[] GetAllowedCharacters()
         {
             return Symbols && Alphanumeric ? ArrayUtils.CombineArrays(ref Program.Symbols, ref Program.Alphanumeric) :
                 Symbols ? Program.Symbols :
